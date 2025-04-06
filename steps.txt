@@ -1,0 +1,3 @@
+Steps what i have followed to complete this assesment task
+1. created folder called "USERMANAGER" and files (index.html, script.js & style.css)
+2. 

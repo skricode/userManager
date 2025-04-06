@@ -3,9 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <title>User Manager</title>
 </head>
 <body>
-    
+    <div class="main-container">
+        <input type="text" class="search-box" placeholder="Search by name, email or role">
+
+        <table id="userTable">
+            <thead>
+                <tr>
+                    <th><input type="checkbox" class="selectItems"></th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <button id="deleteSelectedItems">Delete Selected</button>
+        <div class="pagination"></div>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
