@@ -29,6 +29,15 @@ button{
 button:hover{
     background: black;
 }
+.editBtn{
+    padding: 5px 10px;
+    background-color: blue;
+    font-size: 14px;
+}
+.deleteBtn{
+    padding: 5px 10px;
+    font-size: 14px;
+}
 /* table */
 table{
     width: 100%;

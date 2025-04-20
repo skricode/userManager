@@ -1,3 +1,7 @@
 Steps what i have followed to complete this assesment task
 1. created folder called "USERMANAGER" and files (index.html, script.js & style.css)
-2. 
+2. Html strcture created as per design
+3. added basic styles of searchbox table design and buttons
+4. written script functions for fetching data from API, displaying in table per page 10 rows (users)
+5. added pagination
+6. 
