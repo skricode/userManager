@@ -1,7 +1,8 @@
 
 const table_content = document.querySelector('#userTable tbody');
 const pagination = document.getElementById("pagination");
-
+const searchBox = document.getElementById("search-box");
+let searchResult = [];
 
 let users = [];
 let curPage = 1;
@@ -11,9 +12,10 @@ fetch("https://geektrust.s3-ap-southeast-1.amazonaws.com/adminui-problem/members
     .then(res => res.json())
     .then(data => {
         users = data;
+        searchResult = users;
         // console.log(users);
-        renderTable(users);
-        renderPagination(users.length);
+        renderTable(searchResult);
+        renderPagination(searchResult.length);
     }).catch(err => {
         console.log("Data not Fetched: ", err);
     });
@@ -51,9 +53,24 @@ function renderPagination(totalUsers){
 
         btn.addEventListener("click", () => {
             curPage = i;
-            renderTable(users);
-            renderPagination(users.length);
+            renderTable(searchResult);
+            renderPagination(searchResult.length);
         });
         pagination.appendChild(btn);
     }
+}
+
+searchBox.addEventListener("input", handleSearch);
+
+function handleSearch(){
+    const searchData = searchBox.value.trim().toLowerCase();
+
+    searchResult = users.filter(user => 
+        user.name.toLowerCase().includes(searchData) || 
+        user.email.toLowerCase().includes(searchData) || 
+        user.role.toLowerCase().includes(searchData)
+    );
+    curPage=1;
+    renderTable(searchResult);
+    renderPagination(searchResult.length);
 }

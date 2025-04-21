@@ -7,13 +7,13 @@ input, table{
 }
 
 /* search box */
-.search-box{
+#search-box{
     width: 100%;
     border: 1px solid gray;
     border-radius: 5px;
     margin-bottom: 25px;
 }
-.search-box, table{
+#search-box, table{
     padding: 10px;
 }
 /* common button */
