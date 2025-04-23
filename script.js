@@ -34,10 +34,65 @@ function renderTable(data) {
             <td>${user.email}</td>
             <td>${user.role}</td>
             <td>
-                <button class="editBtn">Edit</button>
-                <button class="deleteBtn" data-email="${user.email}">Delete</button>
+                <a href="" class="editIcon"><img src="assets/user_edit.png" alt="edit" width="30px"></a>
+                <a href="" class="deleteIcon" data-email="${user.email}"><img src="assets/delete.png" alt="delete" width="30px"></a>
             </td>`;
         table_content.appendChild(row);
+    });
+
+    // delete after click individually
+    const deleteUser = table_content.querySelectorAll(".deleteIcon");
+
+    deleteUser.forEach(btn => {
+        btn.addEventListener("click", (e) => {
+            e.preventDefault();
+            const email = btn.dataset.email;
+    
+            users = users.filter(user => user.email !== email);
+            searchResult = users;
+            renderTable(searchResult);
+            renderPagination(searchResult.length);
+        })
+    });
+    // update after click individually
+    const editUser = table_content.querySelectorAll(".editIcon");
+
+    editUser.forEach(btn => {
+        btn.addEventListener("click", (e) => {
+            e.preventDefault();
+            const row = btn.closest("tr");
+            // data-email is available on deleteIcon so
+            const email = row.querySelector(".deleteIcon").dataset.email;
+            const user = users.find(u => u.email === email);
+
+            // Replace cells with input fields..
+            row.innerHTML = `
+            <td><input type="checkbox" class="select-user" data-email="${email}" disabled></td>
+            <td><input type="text" value="${user.name}" class="edit-name"></td>
+            <td><input type="text" value="${user.email}" class="edit-email"></td>
+            <td><input type="text" value="${user.role}" class="edit-role"></td>
+            <td>
+                <button class="saveBtn">Save</button>
+                <button class="cancelBtn">Cancel</button>
+            </td>`;
+
+            //save n update
+            row.querySelector(".saveBtn").addEventListener("click", () => {
+                user.name = row.querySelector(".edit-name").value;
+                user.email = row.querySelector(".edit-email").value;
+                user.role = row.querySelector(".edit-role").value;
+
+                searchResult = users;
+                renderTable(searchResult);
+                renderPagination(searchResult.length);
+            });
+
+            //cancel edit
+            row.querySelector(".cancelBtn").addEventListener("click", () => {
+                renderTable(searchResult);
+                renderPagination(searchResult.length);
+            }); 
+        });
     });
 }
 
@@ -74,3 +129,9 @@ function handleSearch(){
     renderTable(searchResult);
     renderPagination(searchResult.length);
 }
+
+// select edit and delete users
+
+const selectedAllUSers = document.getElementById("selectAllItems");
+const deleteSelectedUsers = document.getElementById("deleteSelectedUsers");
+

@@ -25,25 +25,30 @@ button{
     font-size: 18px;
     font-weight: 600;
     border-radius: 5px;
+    cursor: pointer;
 }
-button:hover{
+button:hover, #pagination button:hover{
     background: black;
 }
-.editBtn{
-    padding: 5px 10px;
-    background-color: blue;
-    font-size: 14px;
+.btnPagination{
+    display: flex;
+    justify-content: space-between;
 }
-.deleteBtn{
-    padding: 5px 10px;
-    font-size: 14px;
+#pagination button{
+    padding: 4px 9px;
+    border-radius: 50%;
+    margin-left: 15px ;
+    background: rgb(86, 86, 86);
+}
+.saveBtn, .cancelBtn{
+    padding: 3px 7px;
+}
+.saveBtn{
+    background: green;
 }
 /* table */
 table{
     width: 100%;
     text-align: left;
     margin-bottom: 25px;
-}
-thead{
-    /* font-size: 18px; */
 }

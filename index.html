@@ -13,7 +13,7 @@
         <table id="userTable">
             <thead>
                 <tr>
-                    <th><input type="checkbox" class="selectItems"></th>
+                    <th><input type="checkbox" id="selectAllItems"></th>
                     <th>Name</th>
                     <th>Email</th>
                     <th>Role</th>
@@ -22,8 +22,11 @@
             </thead>
             <tbody></tbody>
         </table>
-        <button id="deleteSelectedItems">Delete Selected</button>
-        <div id="pagination"></div>
+        <div class="btnPagination">
+            <button id="deleteSelectedUsers">Delete Selected</button>
+            <div id="pagination"></div>
+        </div>
+        
     </div>
     <script src="script.js"></script>
 </body>

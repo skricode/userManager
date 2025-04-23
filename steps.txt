@@ -5,3 +5,7 @@ Steps what i have followed to complete this assesment task
 4. written script functions for fetching data from API, displaying in table per page 10 rows (users)
 5. added pagination
 6. search text in users data
+7. select users by checkbox tick and delete it.
+8. Click edit button and update info of users
+9. edit and delete user data
+10. 
