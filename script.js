@@ -47,7 +47,7 @@ function renderTable(data) {
         btn.addEventListener("click", (e) => {
             e.preventDefault();
             const email = btn.dataset.email;
-    
+
             users = users.filter(user => user.email !== email);
             searchResult = users;
             renderTable(searchResult);
@@ -91,17 +91,17 @@ function renderTable(data) {
             row.querySelector(".cancelBtn").addEventListener("click", () => {
                 renderTable(searchResult);
                 renderPagination(searchResult.length);
-            }); 
+            });
         });
     });
 }
 
 
-function renderPagination(totalUsers){
+function renderPagination(totalUsers) {
     pagination.innerHTML = "";
     const totalPages = Math.ceil(totalUsers / rowsPerPage);
 
-    for(let i=1; i<=totalPages; i++){
+    for (let i = 1; i <= totalPages; i++) {
         const btn = document.createElement('button');
         btn.textContent = i;
         btn.classList.toggle("active", i === curPage);
@@ -113,19 +113,50 @@ function renderPagination(totalUsers){
         });
         pagination.appendChild(btn);
     }
-}
 
+    document.querySelector("button[onclick='prevPage()']").disabled = curPage === 1;
+    document.querySelector("button[onclick='nextPage()']").disabled = curPage === totalPages;
+    document.querySelector("button[onclick='firstPage()']").disabled = curPage === 1;
+    document.querySelector("button[onclick='lastPage()']").disabled = curPage === totalPages;
+
+}
+// pagination direct button jumps
+function firstPage() {
+    curPage = 1;
+    renderTable(searchResult);
+    renderPagination(searchResult.length);
+}
+function prevPage() {
+    if (curPage > 1) {
+        curPage--;
+        renderTable(searchResult);
+        renderPagination(searchResult.length);
+    }
+}
+function nextPage() {
+    const totalPages = Math.ceil(searchResult.length / rowsPerPage);
+    if (curPage < totalPages) {
+        curPage++;
+        renderTable(searchResult);
+        renderPagination(searchResult.length);
+    }
+}
+function lastPage() {
+    curPage = Math.ceil(searchResult.length / rowsPerPage);
+    renderTable(searchResult);
+    renderPagination(searchResult.length);
+}
 searchBox.addEventListener("input", handleSearch);
 
-function handleSearch(){
+function handleSearch() {
     const searchData = searchBox.value.trim().toLowerCase();
 
-    searchResult = users.filter(user => 
-        user.name.toLowerCase().includes(searchData) || 
-        user.email.toLowerCase().includes(searchData) || 
+    searchResult = users.filter(user =>
+        user.name.toLowerCase().includes(searchData) ||
+        user.email.toLowerCase().includes(searchData) ||
         user.role.toLowerCase().includes(searchData)
     );
-    curPage=1;
+    curPage = 1;
     renderTable(searchResult);
     renderPagination(searchResult.length);
 }

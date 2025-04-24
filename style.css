@@ -27,7 +27,7 @@ button{
     border-radius: 5px;
     cursor: pointer;
 }
-button:hover, #pagination button:hover{
+button:hover, #pagination button:hover, #pagination-section > button:hover{
     background: black;
 }
 .btnPagination{
@@ -37,8 +37,17 @@ button:hover, #pagination button:hover{
 #pagination button{
     padding: 4px 9px;
     border-radius: 50%;
-    margin-left: 15px ;
-    background: rgb(86, 86, 86);
+    margin: 0px 7px ;
+    background: rgb(129, 129, 129);
+}
+#pagination-section > button{
+    background-color: transparent;
+    border: 1px solid gray;
+    color: rgb(129, 129, 129);
+    padding: 4px 9px;
+}
+#pagination button.active{
+  background: red;  
 }
 .saveBtn, .cancelBtn{
     padding: 3px 7px;

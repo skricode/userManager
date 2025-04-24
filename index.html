@@ -24,7 +24,13 @@
         </table>
         <div class="btnPagination">
             <button id="deleteSelectedUsers">Delete Selected</button>
-            <div id="pagination"></div>
+            <div id="pagination-section">
+                <button onclick="firstPage()"><<</button>
+                <button onclick="prevPage()"><</button>
+                <span id="pagination"></span>
+                <button onclick="nextPage()">></button>
+                <button onclick="lastPage()">>></button>
+            </div>
         </div>
         
     </div>
