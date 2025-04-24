@@ -9,4 +9,4 @@ Steps what i have followed to complete this assesment task
 8. Click edit button and update info of users
 9. edit and delete user data
 10. pagination to jump first, last, prev and next pages
-11.
+11. check / uncheck and delete users

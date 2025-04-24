@@ -13,7 +13,7 @@
         <table id="userTable">
             <thead>
                 <tr>
-                    <th><input type="checkbox" id="selectAllItems"></th>
+                    <th><input type="checkbox" id="selectAllUsers"></th>
                     <th>Name</th>
                     <th>Email</th>
                     <th>Role</th>
@@ -25,11 +25,11 @@
         <div class="btnPagination">
             <button id="deleteSelectedUsers">Delete Selected</button>
             <div id="pagination-section">
-                <button onclick="firstPage()"><<</button>
-                <button onclick="prevPage()"><</button>
+                <button onclick="firstPage()" id="firstPage"><<</button>
+                <button onclick="prevPage()" id="prevPage"><</button>
                 <span id="pagination"></span>
-                <button onclick="nextPage()">></button>
-                <button onclick="lastPage()">>></button>
+                <button onclick="nextPage()" id="nextPage">></button>
+                <button onclick="lastPage()" id="lastPage">>></button>
             </div>
         </div>
         

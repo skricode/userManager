@@ -94,8 +94,45 @@ function renderTable(data) {
             });
         });
     });
+    hookSelectCheckboxes();
 }
 
+//delete checked users
+const deleteSelected = document.getElementById("deleteSelectedUsers");
+
+deleteSelected.addEventListener("click", () => {
+    const selectedUsers = [...document.querySelectorAll(".select-user:checked")]
+        .map(cb => cb.dataset.email);
+
+    //delete from lists of users
+    users = users.filter(user => !selectedUsers.includes(user.email));
+    searchResult = users;
+
+    renderTable(searchResult);
+    renderPagination(searchResult.length);
+
+});
+
+function hookSelectCheckboxes() {
+    const selectAll = document.getElementById("selectAllUsers");
+    const checkboxes = document.querySelectorAll(".select-user");
+
+    //restting bcz of reload to new 
+    selectAll.checked = false;
+
+    // select / deselct all users
+    selectAll.addEventListener("change", () => {
+        checkboxes.forEach(cb => cb.checked = selectAll.checked);
+    });
+
+    //selectAll users when individual checkboxes chnage
+    checkboxes.forEach(cb => {
+        cb.addEventListener("change", () => {
+            const allChecked = [...checkboxes].every(c => c.checked);
+            selectAll.checked = allChecked;
+        });
+    });
+}
 
 function renderPagination(totalUsers) {
     pagination.innerHTML = "";
@@ -114,10 +151,10 @@ function renderPagination(totalUsers) {
         pagination.appendChild(btn);
     }
 
-    document.querySelector("button[onclick='prevPage()']").disabled = curPage === 1;
-    document.querySelector("button[onclick='nextPage()']").disabled = curPage === totalPages;
-    document.querySelector("button[onclick='firstPage()']").disabled = curPage === 1;
-    document.querySelector("button[onclick='lastPage()']").disabled = curPage === totalPages;
+    document.getElementById("prevPage").disabled = curPage === 1;
+    document.getElementById("nextPage").disabled = curPage === totalPages;
+    document.getElementById("firstPage").disabled = curPage === 1;
+    document.getElementById("lastPage").disabled = curPage === totalPages;
 
 }
 // pagination direct button jumps
@@ -160,9 +197,3 @@ function handleSearch() {
     renderTable(searchResult);
     renderPagination(searchResult.length);
 }
-
-// select edit and delete users
-
-const selectedAllUSers = document.getElementById("selectAllItems");
-const deleteSelectedUsers = document.getElementById("deleteSelectedUsers");
-
